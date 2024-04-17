@@ -1,7 +1,6 @@
 const projects = require('./projects.json');
 
 const newProjects = projects.map((proj, i) => {
-
   const tables = proj.prices_table ? proj.prices_table.map(table => ({
     "rooms": table.rooms, // which one is 1 which is more
     "bedrooms": table.rooms, // which one is 1 which is more
@@ -23,10 +22,10 @@ const newProjects = projects.map((proj, i) => {
       "ar": proj.translations.find(t => t.languages_code === 'ar').short_description
     },
     "content": {
-      "en": proj.translations.find(t => t => t.languages_code === 'en')?.details || "",
-      "ar": proj.translations.find(t => t => t.languages_code === 'ar').details
+      "en": proj.translations.find(t => t.languages_code === 'en')?.details || "",
+      "ar": proj.translations.find(t => t.languages_code === 'ar').details
     },
-    "construction_company": proj.translations.find(t => t => t.languages_code === 'ar').construction_company,
+    "construction_company": proj.translations.find(t => t.languages_code === 'ar').construction_company,
     "building_date": "", // no building_date
     "delivery_date": proj.delivery_date,
     "block_count": proj.block_count,
@@ -134,17 +133,17 @@ async function postData() {
 }
 
 
-console.log(JSON.stringify(newProjects[0]))
-fetch('https://backend.skylineholding.sa/api/storeApi', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(newProjects[0])
-})
-  .then(response => {
-    console.log(`Status Code: ${response.status}`);
-    return response.json();
-  })
-  .then(data => console.log('Data:', data))
-  .catch(error => console.error('Error:', error));
+console.log(newProjects[0])
+// fetch('https://backend.skylineholding.sa/api/storeApi', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(newProjects[0])
+// })
+//   .then(response => {
+//     console.log(`Status Code: ${response.status}`);
+//     return response.json();
+//   })
+//   .then(data => console.log('Data:', data))
+//   .catch(error => console.error('Error:', error));
