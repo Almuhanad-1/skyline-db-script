@@ -55,7 +55,7 @@ const newProjects = projects.map((proj, i) => {
     "city_id": proj.city.id,
     "district_id": proj.district.id,
     "neighborhood_id": proj.neighborhood.id,
-    "peyment_id": proj.payment_methods, // what is this?
+    "peyment_id": proj.payment_methods[0].payment_methods_id, // what is this?
     "user_id": "1",
     "deleted_at": null,
     "pic": "example-image1.jpg",
@@ -134,16 +134,17 @@ async function postData() {
 
 
 console.log(newProjects[0])
-// fetch('https://backend.skylineholding.sa/api/storeApi', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify(newProjects[0])
-// })
-//   .then(response => {
-//     console.log(`Status Code: ${response.status}`);
-//     return response.json();
-//   })
-//   .then(data => console.log('Data:', data))
-//   .catch(error => console.error('Error:', error));
+fetch('https://backend.skylineholding.sa/api/storeApi', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(newProjects[0])
+})
+  .then(response => {
+    console.log(`Status Code: ${response.status}`);
+    return response.json();
+  })
+  .then(data => console.log('Data:', data))
+  .catch(error => console.error('Error:', error));
+
